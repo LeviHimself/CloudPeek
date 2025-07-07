@@ -68,5 +68,7 @@ const API_KEY = 'YOUR_OPENWEATHERMAP_API_KEY';
 ## ✨ Credits
 
 - Weather data: [OpenWeatherMap](https://openweathermap.org/)
+
 > **Note:**  
+
 > The OpenWeatherMap API key used in this project is exposed in the client-side code. For demo and educational purposes, this is acceptable. For production or high-traffic apps, consider using a backend proxy to keep your API key
