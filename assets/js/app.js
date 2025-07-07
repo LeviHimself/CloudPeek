@@ -167,4 +167,13 @@ function showAlert(message, type = "success") {
 }
     // -------------------------Initial Load of Default Cards-------------------------
     loadDefaultCards();
+
+    document.getElementById('weather-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Call your weather fetch logic here, e.g.:
+        document.getElementById('fetch-weather').click();
+    });
 });
+
+
+
