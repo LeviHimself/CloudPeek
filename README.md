@@ -1,6 +1,6 @@
 # 🌙 MoonCast
 
-<img src="LogoMoonCast.PNG" alt="MoonCast Half Moon Logo" width="200" style="display:block;margin:24px auto 16px auto;">
+<img src="LogoMoonCast.PNG" alt="MoonCast Half Moon Logo" width="400" style="display:block;margin:24px auto 16px auto;">
 
 MoonCast is a responsive weather web application that provides real-time weather information for cities around the world. It features an animated UI, default weather cards for popular cities, a floating label search input, animated alerts, and more.
 
