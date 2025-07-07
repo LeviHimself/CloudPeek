@@ -1,4 +1,6 @@
-# MoonCast
+# 🌙 MoonCast
+
+<img src="assets/mooncast-moon.png" alt="MoonCast Half Moon Logo" width="120" style="display:block;margin:24px auto 16px auto;">
 
 MoonCast is a modern, responsive weather web application that provides real-time weather information for cities around the world. It features a beautiful animated UI, default weather cards for popular cities, a floating label search input, animated alerts, and more.
 
@@ -23,6 +25,7 @@ MoonCast/
 ├── favicon.ico
 ├── assets/
 │   ├── styles.css
+│   ├── mooncast-moon.png
 │   └── js/
 │       └── app.js
 ├── README.md
@@ -70,5 +73,4 @@ const API_KEY = 'YOUR_OPENWEATHERMAP_API_KEY';
 - Weather data: [OpenWeatherMap](https://openweathermap.org/)
 
 > **Note:**  
-
-> The OpenWeatherMap API key used in this project is exposed in the client-side code. For demo and educational purposes, this is acceptable. For production or high-traffic apps, consider using a backend proxy to keep your API key
+> The OpenWeatherMap API key used in this project is exposed in the client-side code. For demo and educational purposes, this is acceptable. For production or high-traffic apps, consider using a backend proxy to keep your API key secure.
