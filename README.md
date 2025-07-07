@@ -1,13 +1,13 @@
 # 🌙 MoonCast
 
-<img src="assets/mooncast-moon.png" alt="MoonCast Half Moon Logo" width="120" style="display:block;margin:24px auto 16px auto;">
+<img src="LogoMoonCast.png" alt="MoonCast Half Moon Logo" width="200" style="display:block;margin:24px auto 16px auto;">
 
-MoonCast is a modern, responsive weather web application that provides real-time weather information for cities around the world. It features a beautiful animated UI, default weather cards for popular cities, a floating label search input, animated alerts, and more.
+MoonCast is a responsive weather web application that provides real-time weather information for cities around the world. It features an animated UI, default weather cards for popular cities, a floating label search input, animated alerts, and more.
 
 ## 🚀 Features
 
 - **Live Weather Search:** Search for any city and get current weather, humidity, wind, max/min temperature, and more.
-- **Default City Cards:** Instantly view weather for Karachi, Islamabad, Lahore, and other popular cities.
+- **Default City Cards:** Instantly view weather for Karachi, London, Dehli, and other popular cities.
 - **Animated UI:** Smooth background gradients, animated moon logo, and floating label input.
 - **Responsive Design:** Looks great on desktop and mobile devices.
 - **Smart Suggestions:** Get city suggestions as you type, including cities from Pakistan and neighboring countries.
@@ -15,7 +15,7 @@ MoonCast is a modern, responsive weather web application that provides real-time
 
 ## 🖼️ Preview
 
-![MoonCast Screenshot](screenshot.png) <!-- Add a screenshot if you have one -->
+![MoonCast Screenshot](preview1.png)
 
 ## 📦 Folder Structure
 
