@@ -49,25 +49,39 @@ async function fetchWeather(city) {
 // -------------------------Card Logic-------------------------
 function createWeatherCard({ name, main, weather, wind, sys }) {
     return `
-        <div class="weather-card">
-            <h2>${name}${sys && sys.country ? ', ' + sys.country : ''}</h2>
-            <img src="https://openweathermap.org/img/wn/${weather[0].icon}@2x.png" alt="${weather[0].main}">
-            <div class="temp">${Math.round(main.temp)}°C</div>
-            <div class="condition">${weather[0].main} - ${weather[0].description}</div>
-            <div>Wind: ${wind ? Math.round(wind.speed) : '-'} m/s</div>
-            <div>Max: ${Math.round(main.temp_max)}°C | Min: ${Math.round(main.temp_min)}°C</div>
-            <div class="humidity">Humidity: ${main.humidity}%</div>
+        <div class="weather-card collapsible-card">
+            <div class="card-main">
+                <h2>${name}${sys && sys.country ? ', ' + sys.country : ''}</h2>
+                <img src="https://openweathermap.org/img/wn/${weather[0].icon}@2x.png" alt="${weather[0].main}">
+                <div class="temp">${Math.round(main.temp)}°C</div>
+                <button class="dropdown-toggle" aria-label="Show details">
+                    <span class="triangle">&#9660;</span>
+                </button>
+            </div>
+            <div class="card-details">
+                <div class="condition">${weather[0].main} - ${weather[0].description}</div>
+                <div>Wind: ${wind ? Math.round(wind.speed) : '-'} m/s</div>
+                <div>Max: ${Math.round(main.temp_max)}°C | Min: ${Math.round(main.temp_min)}°C</div>
+                <div class="humidity">Humidity: ${main.humidity}%</div>
+            </div>
         </div>
     `;
 }
 
 function renderResultWeatherCard(data) {
     return `
-        <div class="result-weather-card">
-            <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png" alt="${data.weather[0].main}">
-            <div class="result-weather-info">
-                <h2>${data.name}, ${data.sys.country}</h2>
-                <div class="temp">${Math.round(data.main.temp)}°C</div>
+        <div class="result-weather-card collapsible-card">
+            <div class="card-main">
+                <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png" alt="${data.weather[0].main}">
+                <div>
+                    <h2>${data.name}, ${data.sys.country}</h2>
+                    <div class="temp size">${Math.round(data.main.temp)}°C</div>
+                </div>
+                <button class="dropdown-toggle" aria-label="Show details">
+                    <span class="triangle">&#9660;</span>
+                </button>
+            </div>
+            <div class="card-details">
                 <div class="condition">${data.weather[0].main} - ${data.weather[0].description}</div>
                 <div>Wind: ${Math.round(data.wind.speed)} m/s</div>
                 <div>Max: ${Math.round(data.main.temp_max)}°C | Min: ${Math.round(data.main.temp_min)}°C</div>
@@ -76,7 +90,15 @@ function renderResultWeatherCard(data) {
         </div>
     `;
 }
+// -------------------------Refresh Btn-------------------------
+document.addEventListener('DOMContentLoaded', () => {
+    // ...existing code...
+    const refreshBtn = document.getElementById('refresh-btn');
+    if (refreshBtn) {
+        refreshBtn.addEventListener('click', () => window.location.reload());
+    }
 
+});
 // -------------------------Default Cards Loader-------------------------
 async function loadDefaultCards() {
     defaultCardsContainer.innerHTML = '';
@@ -93,6 +115,7 @@ async function loadDefaultCards() {
             `;
         }
     }
+    enableCardDropdowns();
 }
 
 // -------------------------Suggestion Logic-------------------------
@@ -145,6 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const data = await getWeather(city);
             weatherDisplay.innerHTML = renderResultWeatherCard(data);
+            enableCardDropdowns();
             showAlert(`Weather loaded for ${data.name}!`, 'success');
         } catch (error) {
             weatherDisplay.innerHTML = `<div style="color:#ffb3b3;">Weather data unavailable</div>`;
@@ -165,6 +189,7 @@ function showAlert(message, type = "success") {
         alertDiv.remove();
     }, 3000);
 }
+
     // -------------------------Initial Load of Default Cards-------------------------
     loadDefaultCards();
 
@@ -174,6 +199,36 @@ function showAlert(message, type = "success") {
         document.getElementById('fetch-weather').click();
     });
 });
+
+function enableCardDropdowns() {
+    document.querySelectorAll('.collapsible-card').forEach(card => {
+        const toggle = card.querySelector('.dropdown-toggle');
+        const details = card.querySelector('.card-details');
+        const triangle = card.querySelector('.triangle');
+        // Add "More info" label if not already present
+        if (toggle && !toggle.querySelector('.more-info-label')) {
+            const label = document.createElement('span');
+            label.className = 'more-info-label';
+            label.textContent = 'More info';
+            toggle.appendChild(label);
+        }
+        if (toggle && details) {
+            details.style.maxHeight = '0';
+            details.style.overflow = 'hidden';
+            details.style.transition = 'max-height 0.3s cubic-bezier(.4,0,.2,1)';
+            toggle.addEventListener('click', () => {
+                const expanded = card.classList.toggle('expanded');
+                if (expanded) {
+                    details.style.maxHeight = details.scrollHeight + 'px';
+                    triangle.style.transform = 'rotate(180deg)';
+                } else {
+                    details.style.maxHeight = '0';
+                    triangle.style.transform = 'rotate(0deg)';
+                }
+            });
+        }
+    });
+}
 
 
 
