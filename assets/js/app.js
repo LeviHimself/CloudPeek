@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (refreshBtn) {
         refreshBtn.addEventListener('click', () => window.location.reload());
     }
-
+    // ...existing code...
 });
 // -------------------------Default Cards Loader-------------------------
 async function loadDefaultCards() {
