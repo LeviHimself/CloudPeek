@@ -1,33 +1,33 @@
-# 🌙 MoonCast
+# ☁️ CloudPeek
 
-<img src="LogoMoonCast.PNG" alt="MoonCast Half Moon Logo" width="400" style="display:block;margin:24px auto 16px auto;">
+<img src="https://img.icons8.com/color/192/cloud--v1.png" alt="CloudPeek Cloud Logo" width="120" style="display:block;margin:24px auto 16px auto;">
 
-MoonCast is a responsive weather web application that provides real-time weather information for cities around the world. It features an animated UI, default weather cards for popular cities, a floating label search input, animated alerts, and more.
+CloudPeek is a responsive weather web application that provides real-time weather information for cities around the world. It features an animated UI, default weather cards for popular cities, a floating label search input, animated alerts, and more.
 
 ## 🚀 Features
 
 - **Live Weather Search:** Search for any city and get current weather, humidity, wind, max/min temperature, and more.
-- **Default City Cards:** Instantly view weather for Karachi, London, Dehli, and other popular cities.
-- **Animated UI:** Smooth background gradients, animated moon logo, and floating label input.
+- **Default City Cards:** Instantly view weather for Karachi, London, Delhi, and other popular cities.
+- **Animated UI:** Smooth background gradients, animated cloud logo, and floating label input.
 - **Responsive Design:** Looks great on desktop and mobile devices.
 - **Smart Suggestions:** Get city suggestions as you type, including cities from Pakistan and neighboring countries.
 - **Custom Alerts:** Smooth, animated success and error alerts for user feedback.
+- **Animated Cloud Logo:** The main logo uses an animated cloud GIF for a lively touch.
 
 ## 🖼️ Preview
 
-![MoonCast Screenshot](preview1.PNG)
+![CloudPeek Screenshot](preview2.PNG)
 
 ## 📦 Folder Structure
 
 ```
-MoonCast/
+CloudPeek/
 ├── index.html
 ├── favicon.ico
 ├── assets/
-│   ├── styles.css
-│   ├── mooncast-moon.png
-│   └── js/
-│       └── app.js
+│   ├── styles.min.css
+│   ├── js/
+│   │   └── app.js
 ├── README.md
 ```
 
@@ -71,6 +71,8 @@ const API_KEY = 'YOUR_OPENWEATHERMAP_API_KEY';
 ## ✨ Credits
 
 - Weather data: [OpenWeatherMap](https://openweathermap.org/)
+- Cloud icon: [Icons8 Cloud](https://icons8.com/icons/set/cloud)
+- Animated cloud GIF: [Giphy](https://giphy.com/search/cloud)
 
 > **Note:**  
-> The OpenWeatherMap API key used in this project is exposed in the client-side code. For demo and educational purposes, this is acceptable. For production or high-traffic apps, consider using a backend proxy to keep your API key secure.
+> The OpenWeatherMap API key used in this project is exposed in the client-side code. For demo and educational purposes, this is acceptable. For production or high-traffic apps, consider using a backend proxy to keep your
