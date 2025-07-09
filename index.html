@@ -1,10 +1,16 @@
+<!-- 
+    Designed and developed by
+    LeviHimself (Mudasir)
+    Visit at https://cloudpeek.vercel.app/
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CloudPeak</title>
-    <link rel="stylesheet" href="assets/styles.min.css">
+    <link rel="stylesheet" href="assets/styles.css">
     <link rel="icon" href="https://img.icons8.com/color/96/cloud--v1.png" type="image/png">
     <meta property="og:image" content="https://img.icons8.com/color/512/cloud--v1.png" />
     <meta property="og:image:type" content="image/png" />
@@ -17,34 +23,39 @@
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
 </head>
 <body>
-  
     <div id="app">
-        
-    <h1 class="animated-title">
-<img class="cloud-logo" src="https://img.icons8.com/color/96/cloud--v1.png" alt="CloudPeek logo" style="width:64px;height:64px;">
-    <span class="title-text">CloudPeak</span>
-    <span class="title-desc">Forcasts at a glance</span>
-    
-</h1>
-    
-    <div id="weather-display"></div>
-    <form id="weather-form">
-        <div class="form-floating">
-            <input type="text" id="city-input" placeholder="" autocomplete="off" />
-            <label for="city-input">Enter city name</label>
-             <div id="refresh-btn" title="Refresh" class="refresh-btn">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-            <path d="M3 11a8 8 0 1 1 2.5 5.8" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M3 16v-5h5" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <h1 class="animated-title">
+            <img class="cloud-logo" src="https://img.icons8.com/color/96/cloud--v1.png" alt="CloudPeek logo" style="width:64px;height:64px;">
+            <span class="title-text">CloudPeak</span>
+            <span class="title-desc">Forcasts at a glance</span>
+        </h1>
+        <div id="weather-display"></div>
+        <form id="weather-form">
+            <div class="form-floating">
+                <input type="text" id="city-input" placeholder="" autocomplete="off" />
+                <label for="city-input">Enter city name</label>
+                <div id="refresh-btn" title="Refresh" class="refresh-btn">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                        <path d="M3 11a8 8 0 1 1 2.5 5.8" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3 16v-5h5" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+            <div id="city-suggestions" class="suggestions-list"></div>
+            <button id="fetch-weather" type="submit"><strong>Get Weather</strong></button>
+        </form>
+        <div id="default-cards" class="card-container"></div>
+        <span class="creds">
+            Designed and developed by 
+            <a href="https://github.com/LeviHimself">@LeviHimself (Mudasir)</a>
+        </span>
+        <br>
+        <span class="license">
+            MIT license 
+            <a href="https://github.com/LeviHimself/MoonCast/blob/main/license">(license)</a>
+        </span>
     </div>
-        </div>
-        <div id="city-suggestions" class="suggestions-list"></div>
-        <button id="fetch-weather" type="submit"><strong>Get Weather</strong></button>
-    </form>
-    <div id="default-cards" class="card-container"></div>
-</div>
-<div id="alert-container"></div>
-<script type="module" src="assets/js/app.js"></script>
+    <div id="alert-container"></div>
+    <script type="module" src="assets/js/app.js"></script>
 </body>
 </html>

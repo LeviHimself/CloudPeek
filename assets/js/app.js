@@ -1,4 +1,4 @@
-// src/app.js
+// assests/js/app.js
 
 import { getWeather } from './weatherApi.js';
 
@@ -115,7 +115,7 @@ async function loadDefaultCards() {
             `;
         }
     }
-    enableCardDropdowns();
+    addMoreInfoLabels();
 }
 
 // -------------------------Suggestion Logic-------------------------
@@ -168,12 +168,12 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const data = await getWeather(city);
             weatherDisplay.innerHTML = renderResultWeatherCard(data);
-            enableCardDropdowns();
             showAlert(`Weather loaded for ${data.name}!`, 'success');
         } catch (error) {
             weatherDisplay.innerHTML = `<div style="color:#ffb3b3;">Weather data unavailable</div>`;
             showAlert('City not found or weather data unavailable.', 'error');
         }
+        addMoreInfoLabels();
     });
 // -------------------------Alert Logic-------------------------
 function showAlert(message, type = "success") {
@@ -200,32 +200,35 @@ function showAlert(message, type = "success") {
     });
 });
 
-function enableCardDropdowns() {
-    document.querySelectorAll('.collapsible-card').forEach(card => {
-        const toggle = card.querySelector('.dropdown-toggle');
+// -------------------------Event Delegation for Card Dropdowns-------------------------
+document.addEventListener('click', function (e) {
+    // Check if a dropdown-toggle was clicked (works for both default and result cards)
+    const toggle = e.target.closest('.dropdown-toggle');
+    if (toggle) {
+        const card = toggle.closest('.collapsible-card');
         const details = card.querySelector('.card-details');
-        const triangle = card.querySelector('.triangle');
-        // Add "More info" label if not already present
-        if (toggle && !toggle.querySelector('.more-info-label')) {
+        const triangle = toggle.querySelector('.triangle');
+        if (card && details && triangle) {
+            const expanded = card.classList.toggle('expanded');
+            if (expanded) {
+                details.style.maxHeight = details.scrollHeight + 'px';
+                triangle.style.transform = 'rotate(180deg)';
+            } else {
+                details.style.maxHeight = '0';
+                triangle.style.transform = 'rotate(0deg)';
+            }
+        }
+    }
+});
+
+// Add "More info" label to all dropdown-toggles (run after DOM updates)
+function addMoreInfoLabels() {
+    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+        if (!toggle.querySelector('.more-info-label')) {
             const label = document.createElement('span');
             label.className = 'more-info-label';
             label.textContent = 'More info';
             toggle.appendChild(label);
-        }
-        if (toggle && details) {
-            details.style.maxHeight = '0';
-            details.style.overflow = 'hidden';
-            details.style.transition = 'max-height 0.3s cubic-bezier(.4,0,.2,1)';
-            toggle.addEventListener('click', () => {
-                const expanded = card.classList.toggle('expanded');
-                if (expanded) {
-                    details.style.maxHeight = details.scrollHeight + 'px';
-                    triangle.style.transform = 'rotate(180deg)';
-                } else {
-                    details.style.maxHeight = '0';
-                    triangle.style.transform = 'rotate(0deg)';
-                }
-            });
         }
     });
 }
