@@ -16,7 +16,7 @@ CloudPeek is a responsive weather web application that provides real-time weathe
 
 ## 🖼️ Preview
 
-![CloudPeek Screenshot](preview2.PNG)
+![CloudPeek Screenshot](Preview2.PNG)
 
 ## 📦 Folder Structure
 
