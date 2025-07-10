@@ -34,7 +34,7 @@ body {
 
 .form-floating input[type="text"],
 input[type="text"] {
-  width: 80%;
+  width: 65%;
   padding: 14px 12px;
   border-radius: 8px;
   font-size: 1rem;
@@ -52,9 +52,9 @@ input[type="text"]:focus,
 
 .form-floating label {
   position: absolute;
-  left: 30px;
-  top: 50%;
-  transform: translateY(-50%);
+  left: 40%;
+  top: 40%;
+  transform: translate(-55%);
   font-size: 1rem;
   color: #6b7280;
   padding: 0 4px;
@@ -67,11 +67,11 @@ input[type="text"]:focus,
 .form-floating input[type="text"]:focus + label,
 .form-floating input[type="text"]:not(:placeholder-shown) + label {
   top: 0;
-  left: 10px;
+  left: 0px;
   font-size: 0.82rem;
   color: #2563eb;
   background: #fff;
-  transform: translateY(-50%);
+  transform: translate(45%, -55%);
 }
 
 /*==================================================
@@ -111,12 +111,12 @@ button#fetch-weather {
   gap: 20px;
   position: relative;
   top: -12px;
-  right: 60px;
+  right: 80px;
   
 }
 
 button#fetch-weather:hover {
-  transform: translateY(-2px) scale(0.99);
+  transform: translateY(-1px) scale(0.99);
 }
 
 button#fetch-weather.loading {
@@ -467,7 +467,22 @@ button#fetch-weather.loading .lord-icon {
   .button-pop {
     animation: buttonPop 0.3s ease forwards;
   }
-
+  .form-floating input[type="text"],
+  input[type="text"] {
+     margin: none;
+     transform: translateX(0%);
+ }
+  button#fetch-weather {
+    margin: none;
+    transform: translateX(70%);
+  }
+  h1{
+    font-size: 0rem;
+  }
+  .title-desc{
+    font-size: 0.6rem;
+    margin-top: 2px;
+  }
   @keyframes buttonPop {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.1); }
@@ -548,7 +563,7 @@ button#fetch-weather.loading .lord-icon {
 #refresh-btn {
   position: absolute;
   top: 50%;
-  right: 10%;
+  right: 16%;
   transform: translateY(-50%);
   background: #f9faff;
   border: none;
