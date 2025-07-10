@@ -53,7 +53,7 @@ input[type="text"]:focus,
 .form-floating label {
   position: absolute;
   left: 40%;
-  top: 40%;
+  top: 30%;
   transform: translate(-55%);
   font-size: 1rem;
   color: #6b7280;
@@ -66,7 +66,7 @@ input[type="text"]:focus,
 
 .form-floating input[type="text"]:focus + label,
 .form-floating input[type="text"]:not(:placeholder-shown) + label {
-  top: 0;
+  top: 0px;
   left: 0px;
   font-size: 0.82rem;
   color: #2563eb;
@@ -86,8 +86,7 @@ h1 {
 }
 
 #weather-display {
-  margin-bottom: 14px;
-  min-height: 60px;
+  margin-top: 12px;
   transition: background 0.3s;
 }
 
@@ -115,9 +114,6 @@ button#fetch-weather {
   
 }
 
-button#fetch-weather:hover {
-  transform: translateY(-1px) scale(0.99);
-}
 
 button#fetch-weather.loading {
   cursor: wait;
@@ -147,8 +143,8 @@ button#fetch-weather.loading .lord-icon {
 }
 
 .weather-card {
-  background: rgba(43, 93, 180, 0.726);
-  color: #fff;
+  background-color: #527edd;
+  color: #93c5fd;
   border-radius: 14px;
   padding: 1rem 1.2rem;
   text-align: center;
@@ -158,6 +154,8 @@ button#fetch-weather.loading .lord-icon {
   min-width: 160px;
   max-width: 220px;
   flex: 1 1 160px;
+  border: 3px solid #93c5fd;
+  border-radius: 8px;
 }
 
 .weather-card:hover {
@@ -283,6 +281,44 @@ button#fetch-weather.loading .lord-icon {
 }
 
 /*==================================================
+=            Tooltip styles                         =
+==================================================*/
+.dismissible-tooltip {
+  position: absolute;
+  background: #2563eb;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  z-index: 9999;
+  max-width: 240px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  word-wrap: break-word;
+}
+
+.dismissible-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 24px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent #2563eb transparent;
+}
+
+.tooltip-close {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/*==================================================
 =            Alert Styles                          =
 ==================================================*/
 #alert-container {
@@ -313,13 +349,13 @@ button#fetch-weather.loading .lord-icon {
 }
 
 .custom-alert.success {
-  background: linear-gradient(90deg, #4ade80b7 0%, #1fd169b9 100%);
+  background: linear-gradient(90deg, #d1edfa, #34d399);
   color: #218d4a;
   border: 1.5px solid #0ac567;
 }
 
 .custom-alert.error {
-  background: linear-gradient(90deg, #eb3333c2 0%, #e90202af 100%);
+  background: linear-gradient(90deg, #fee2e2, #ef4444);
   color: #851d1d;
   border: 1.5px solid #d42d2d;
 }
@@ -369,7 +405,7 @@ button#fetch-weather.loading .lord-icon {
   letter-spacing: 1px;
   opacity: 0;
   transform: translateX(-40px) scale(0.9);
-  animation: titleSlide 1s 0.6s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+  animation: titleSlide 4.5s 0.6s cubic-bezier(.68,-0.55,.27,1.55) forwards;
 }
 
 .title-desc {

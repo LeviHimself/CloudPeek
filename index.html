@@ -1,70 +1,103 @@
 <!-- 
     Designed and developed by
     LeviHimself (Mudasir)
-    Visit at https://cloudpeek.vercel.app/
+    Visit at https://cloudpeak.vercel.app/
 -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta Basics -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CloudPeak</title>
-    <link rel="stylesheet" href="assets/styles.css">
-    <link rel="icon" href="https://img.icons8.com/color/96/cloud--v1.png" type="image/png">
-    <meta name="google-site-verification" content="QF9j4CbqXR08yIOHz0e4uIfPUDscChqUjsQtB6IEo_c" />
-    <meta property="og:image" content="https://img.icons8.com/color/512/cloud--v1.png" />
+    <title>CloudPeak - Weather Forecasts at a Glance</title>
+
+    <!-- SEO -->
+    <meta name="description" content="CloudPeak is a sleek, responsive weather web app that provides accurate forecasts and weather updates for cities worldwide.">
+    <meta name="keywords" content="CloudPeak, weather app, weather forecast, weather updates, weather web app, forecast app">
+    <meta name="author" content="LeviHimself (Mudasir)">
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/CloudIcon.png" type="image/png">
+
+    <!-- Social Media (Open Graph) -->
+    <meta property="og:title" content="CloudPeak - Weather Forecasts at a Glance" />
+    <meta property="og:description" content="Accurate and beautiful weather forecasts made simple. Powered by CloudPeak." />
+    <meta property="og:image" content="https://cloudpeak.vercel.app/assets/CloudIcon.png" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="512" />
+    <meta property="og:url" content="https://cloudpeak.vercel.app/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://img.icons8.com/color/512/cloud--v1.png">
+    <meta name="twitter:title" content="CloudPeak - Weather Forecasts at a Glance">
+    <meta name="twitter:description" content="Accurate and beautiful weather forecasts made simple. Powered by CloudPeak.">
+    <meta name="twitter:image" content="https://cloudpeak.vercel.app/assets/CloudIcon.png">
+
+    <!-- Google Search Console -->
+    <meta name="google-site-verification" content="QF9j4CbqXR08yIOHz0e4uIfPUDscChqUjsQtB6IEo_c" />
+
+    <!-- Fonts & Styles -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+
+    <!-- Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
 </head>
+
 <body>
     <div id="app">
         <h1 class="animated-title">
-            <img class="cloud-logo" src="https://img.icons8.com/color/96/cloud--v1.png" alt="CloudPeek logo" style="width:64px;height:64px;">
+            <lord-icon
+                src="https://cdn.lordicon.com/xvuzxnig.json"
+                trigger="in"
+                delay="1500"
+                stroke="bold"
+                state="in-reveal"
+                style="width: 100px; height: 100px;">
+            </lord-icon>
             <span class="title-text">CloudPeak</span>
-            <span class="title-desc">Forcasts at a glance</span>
+            <span class="title-desc">Forecasts at a glance</span>
         </h1>
+
         <div id="weather-display"></div>
-        
+
         <form id="weather-form">
             <div class="d-flex">
-            <div class="form-floating">
-                <input type="text" id="city-input" placeholder="" autocomplete="off" />
-                <label for="city-input">Enter city name</label>
-                <div id="refresh-btn" title="Refresh" class="refresh-btn">
-                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                        <path d="M3 11a8 8 0 1 1 2.5 5.8" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M3 16v-5h5" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                <div class="form-floating">
+                    <input type="text" id="city-input" placeholder="" autocomplete="off" />
+                    <label for="city-input">Enter city name</label>
+                    <div id="refresh-btn" title="Refresh" class="refresh-btn">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/idylhtwd.json"
+                            trigger="hover"
+                            stroke="bold">
+                        </lord-icon>
+                    </div>
                 </div>
+                <button id="fetch-weather" type="submit">
+                    <lord-icon
+                        src="https://cdn.lordicon.com/xvuzxnig.json"
+                        trigger="loop"
+                        stroke="bold"
+                        state="loop-cycle">
+                    </lord-icon>
+                </button>
             </div>
-            <button id="fetch-weather" type="submit">
-                
-                
-                <lord-icon
-                    src="https://cdn.lordicon.com/jvucoldz.json"
-                    trigger="hover"
-                    colors="primary:#2563eb,secondary:#60a5fa">
-                </lord-icon>
-            </button>
-            </div>
+
             <div id="city-suggestions" class="suggestions-list"></div>
-            
         </form>
+
         <div id="default-cards" class="card-container"></div>
+
         <span class="creds">
             Designed and developed by 
             <a href="https://github.com/LeviHimself">@LeviHimself (Mudasir)</a>
         </span>
-        <br>
-        
     </div>
+
     <div id="alert-container"></div>
     <script type="module" src="assets/js/app.js"></script>
 </body>

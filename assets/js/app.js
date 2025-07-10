@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
             weatherDisplay.textContent = '';
             return;
         }
-        weatherDisplay.textContent = 'Loading...';
+        weatherDisplay.textContent = showAlert('⟳ Loading...');
         try {
             const data = await getWeather(city);
             weatherDisplay.innerHTML = renderResultWeatherCard(data);
@@ -178,10 +178,27 @@ document.addEventListener('DOMContentLoaded', () => {
 // -------------------------Alert Logic-------------------------
 function showAlert(message, type = "success") {
     const alertContainer = document.getElementById('alert-container');
-    const icon = type === "success" ? "✅" : "⚠️";
+
+    // Lordicon SVGs for success/loading and error
+    const icon = type === "success"
+        ? `<lord-icon
+              src="https://cdn.lordicon.com/ygymzvsj.json"
+              trigger="loop"
+              stroke="bold"
+              state="hover-loading"
+              style="width:64px;height:64px;">
+           </lord-icon>`
+        : `<lord-icon
+              src="https://cdn.lordicon.com/gdfrsvpt.json"
+              trigger="loop"
+              stroke="bold"
+              style="width:64px;height:64px;">
+           </lord-icon>`;
+
     const alertDiv = document.createElement('div');
     alertDiv.className = `custom-alert ${type}`;
-    alertDiv.innerHTML = `<span class="alert-icon">${icon}</span>${message}`;
+    alertDiv.innerHTML = `<span class="alert-icon">${icon}</span><span>${message}</span>`;
+
     alertContainer.appendChild(alertDiv);
 
     // Remove alert after animation
@@ -189,6 +206,7 @@ function showAlert(message, type = "success") {
         alertDiv.remove();
     }, 3000);
 }
+
 
     // -------------------------Initial Load of Default Cards-------------------------
     loadDefaultCards();
@@ -220,6 +238,48 @@ document.addEventListener('click', function (e) {
         }
     }
 });
+// -------------------------Tooltip Logic-------------------------
+
+function showTooltip(targetElement, message) {
+  let tooltip = document.querySelector('.dismissible-tooltip');
+  if (tooltip) tooltip.remove();
+
+  tooltip = document.createElement('div');
+  tooltip.className = 'dismissible-tooltip';
+  tooltip.innerHTML = `
+    <button class="tooltip-close" onclick="this.parentElement.remove()">×</button>
+    ${message}
+  `;
+  document.body.appendChild(tooltip);
+
+  function updateTooltipPosition() {
+    const rect = targetElement.getBoundingClientRect();
+    tooltip.style.top = `${rect.bottom + window.scrollY + 8}px`;
+    tooltip.style.left = `${rect.left + window.scrollX}px`;
+  }
+
+  updateTooltipPosition();
+
+  // Keep tooltip correctly positioned on resize or scroll
+  window.addEventListener('scroll', updateTooltipPosition);
+  window.addEventListener('resize', updateTooltipPosition);
+
+  // Clean up listeners when dismissed
+  tooltip.querySelector('.tooltip-close').addEventListener('click', () => {
+    tooltip.remove();
+    window.removeEventListener('scroll', updateTooltipPosition);
+    window.removeEventListener('resize', updateTooltipPosition);
+  });
+}
+
+// Auto-show tooltip when DOM is ready
+window.addEventListener('DOMContentLoaded', () => {
+  const target = document.getElementById('fetch-weather');
+  if (target) {
+    showTooltip(target, 'Press this button to fetch the weather or hit the Enter');
+  }
+});
+
 
 // Add "More info" label to all dropdown-toggles (run after DOM updates)
 function addMoreInfoLabels() {
