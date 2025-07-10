@@ -34,7 +34,7 @@ body {
 
 .form-floating input[type="text"],
 input[type="text"] {
-  width: 100%;
+  width: 80%;
   padding: 14px 12px;
   border-radius: 8px;
   font-size: 1rem;
@@ -52,7 +52,7 @@ input[type="text"]:focus,
 
 .form-floating label {
   position: absolute;
-  left: 14px;
+  left: 30px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 1rem;
@@ -71,7 +71,7 @@ input[type="text"]:focus,
   font-size: 0.82rem;
   color: #2563eb;
   background: #fff;
-  transform: translateY(-60%);
+  transform: translateY(-50%);
 }
 
 /*==================================================
@@ -95,21 +95,24 @@ h1 {
 =            Input & Button Styles                 =
 ==================================================*/
 button#fetch-weather {
-  padding: 6px 16px;
-  font-size: 1rem;
-  border: 1px solid #2563eb;
+  padding: 2px 16px;
+  font-size: 0.9rem;
+  border: 1.5px solid #93c5fd;
   border-radius: 8px;
-  color: #2563eb;
+  color: #858585;   
   background: none;
-  cursor: pointer;
-  margin-top: 8px;
+  cursor: pointer;  
+  margin-top: 12px;
   box-shadow: 0 2px 8px rgba(37,99,235,0.08);
   transition: background 0.3s, transform 0.2s;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 20px;
   position: relative;
+  top: -12px;
+  right: 60px;
+  
 }
 
 button#fetch-weather:hover {
@@ -122,14 +125,13 @@ button#fetch-weather.loading {
 }
 
 button#fetch-weather .lord-icon {
-  width: 50%;
-  height: 50%;
+  
   pointer-events: none;
   transition: transform 0.3s ease;
 }
 
 button#fetch-weather.loading .lord-icon {
-  animation: spin 1.5s linear infinite;
+  animation: spin 20s linear infinite;
 }
 
 /*==================================================
@@ -470,6 +472,7 @@ button#fetch-weather.loading .lord-icon {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.1); }
   }
+
 }
 
 /*==================================================
@@ -544,10 +547,10 @@ button#fetch-weather.loading .lord-icon {
 
 #refresh-btn {
   position: absolute;
-  top: 40%;
-  right: -5%;
+  top: 50%;
+  right: 10%;
   transform: translateY(-50%);
-  background: #dbe9ff;
+  background: #f9faff;
   border: none;
   border-radius: 50%;
   padding: 6px;
@@ -575,4 +578,8 @@ button#fetch-weather.loading .lord-icon {
   opacity: 0;
   animation: fadeIn 1s forwards;
   animation-delay: 1.5s;
+}
+
+.d-flex {
+  display: flex;
 }

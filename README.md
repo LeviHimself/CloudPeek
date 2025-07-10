@@ -1,8 +1,8 @@
-# ☁️ CloudPeek
+# ☁️ CloudPeak
 
-<img src="https://img.icons8.com/color/192/cloud--v1.png" alt="CloudPeek Cloud Logo" width="120" style="display:block;margin:24px auto 16px auto;">
+<img src="https://img.icons8.com/color/192/cloud--v1.png" alt="CloudPeak Cloud Logo" width="120" style="display:block;margin:24px auto 16px auto;">
 
-CloudPeek is a responsive weather web application that provides real-time weather information for cities around the world. It features an animated UI, default weather cards for popular cities, a floating label search input, animated alerts, and more.
+CloudPeak is a responsive weather web application that provides real-time weather information for cities around the world. It features an animated UI, default weather cards for popular cities, a floating label search input, animated alerts, and more.
 
 ## 🚀 Features
 
@@ -21,7 +21,7 @@ CloudPeek is a responsive weather web application that provides real-time weathe
 ## 📦 Folder Structure
 
 ```
-CloudPeek/
+CloudPeak/
 ├── index.html
 ├── favicon.ico
 ├── assets/

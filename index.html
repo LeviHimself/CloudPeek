@@ -31,7 +31,9 @@
             <span class="title-desc">Forcasts at a glance</span>
         </h1>
         <div id="weather-display"></div>
+        
         <form id="weather-form">
+            <div class="d-flex">
             <div class="form-floating">
                 <input type="text" id="city-input" placeholder="" autocomplete="off" />
                 <label for="city-input">Enter city name</label>
@@ -42,16 +44,18 @@
                     </svg>
                 </div>
             </div>
-            <div id="city-suggestions" class="suggestions-list"></div>
-            <button id="fetch-weather" type="submit" class="fetch-btn">
+            <button id="fetch-weather" type="submit">
+                
+                
                 <lord-icon
                     src="https://cdn.lordicon.com/jvucoldz.json"
                     trigger="hover"
-                    colors="primary:#2563eb,secondary:#60a5fa"
->
+                    colors="primary:#2563eb,secondary:#60a5fa">
                 </lord-icon>
-                <strong>Get Weather</strong>
             </button>
+            </div>
+            <div id="city-suggestions" class="suggestions-list"></div>
+            
         </form>
         <div id="default-cards" class="card-container"></div>
         <span class="creds">
