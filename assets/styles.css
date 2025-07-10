@@ -286,7 +286,7 @@ button#fetch-weather.loading .lord-icon {
 .dismissible-tooltip {
   position: absolute;
   background: #2563eb;
-  color: white;
+  color: #93c5fd;
   padding: 10px 14px;
   border-radius: 6px;
   font-size: 0.85rem;
@@ -294,6 +294,7 @@ button#fetch-weather.loading .lord-icon {
   max-width: 240px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   word-wrap: break-word;
+  border: 2px solid #93c5fd;
 }
 
 .dismissible-tooltip::after {
@@ -405,7 +406,7 @@ button#fetch-weather.loading .lord-icon {
   letter-spacing: 1px;
   opacity: 0;
   transform: translateX(-40px) scale(0.9);
-  animation: titleSlide 4.5s 0.6s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+  animation: titleSlide 5s 0.6s cubic-bezier(.68,-0.55,.27,1.55) forwards;
 }
 
 .title-desc {
@@ -633,4 +634,13 @@ button#fetch-weather.loading .lord-icon {
 
 .d-flex {
   display: flex;
+}
+.animated-weather-icon {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+    animation: fadeIn 0.8s;
+    transition: transform 0.3s ease;
+    border-radius: 50%;
+    border: #60a5fa 9px solid;
 }

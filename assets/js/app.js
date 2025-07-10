@@ -38,6 +38,29 @@ const popularCities = [
     , "Dubai", "Riyadh", "Istanbul", "Tel Aviv", "Doha", "Muscat", "Amman", "Beirut"
 ];
 
+function getWeatherGif(condition) {
+    const map = {
+        'Thunderstorm': 'thunder.gif',
+        'Drizzle': 'cloudy2.gif',
+        'Rain': 'rain.gif',
+        'Snow': 'snow.gif',
+        'Clear': 'sun.gif',
+        'Clouds': 'clouds.gif',
+        'Mist': 'wind.gif',
+        'Fog': ' foggy.gif',
+        'Haze': 'cloudy2.gif',
+        'Smoke': 'cloudy2.gif',
+        'Dust': 'wind.gif',
+        'Sand': 'wind.gif',
+        'Ash': 'foggy.gif',
+        'Squall': 'storm.gif',
+        'Tornado': 'storm.gif'
+    };
+
+    return `assets/${map[condition] || 'cloudy.gif'}`;
+}
+
+
 // -------------------------Weather API Logic-------------------------
 async function fetchWeather(city) {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`;
@@ -52,7 +75,7 @@ function createWeatherCard({ name, main, weather, wind, sys }) {
         <div class="weather-card collapsible-card">
             <div class="card-main">
                 <h2>${name}${sys && sys.country ? ', ' + sys.country : ''}</h2>
-                <img src="https://openweathermap.org/img/wn/${weather[0].icon}@2x.png" alt="${weather[0].main}">
+                <img src="${getWeatherGif(weather[0].main)}" alt="${weather[0].description}" class="animated-weather-icon">
                 <div class="temp">${Math.round(main.temp)}°C</div>
                 <button class="dropdown-toggle" aria-label="Show details">
                     <span class="triangle">&#9660;</span>
@@ -68,11 +91,12 @@ function createWeatherCard({ name, main, weather, wind, sys }) {
     `;
 }
 
+
 function renderResultWeatherCard(data) {
     return `
         <div class="result-weather-card collapsible-card">
             <div class="card-main">
-                <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png" alt="${data.weather[0].main}">
+                <img src="${getWeatherGif(data.weather[0].main)}" alt="${data.weather[0].description}" class="animated-weather-icon">
                 <div>
                     <h2>${data.name}, ${data.sys.country}</h2>
                     <div class="temp size">${Math.round(data.main.temp)}°C</div>
