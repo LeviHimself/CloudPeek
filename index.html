@@ -43,7 +43,15 @@
                 </div>
             </div>
             <div id="city-suggestions" class="suggestions-list"></div>
-            <button id="fetch-weather" type="submit"><strong>Get Weather</strong></button>
+            <button id="fetch-weather" type="submit" class="fetch-btn">
+                <lord-icon
+                    src="https://cdn.lordicon.com/jvucoldz.json"
+                    trigger="hover"
+                    colors="primary:#2563eb,secondary:#60a5fa"
+>
+                </lord-icon>
+                <strong>Get Weather</strong>
+            </button>
         </form>
         <div id="default-cards" class="card-container"></div>
         <span class="creds">
@@ -51,10 +59,7 @@
             <a href="https://github.com/LeviHimself">@LeviHimself (Mudasir)</a>
         </span>
         <br>
-        <span class="license">
-            MIT license 
-            <a href="https://github.com/LeviHimself/LeviHimself/blob/main/license">(license)</a>
-        </span>
+        
     </div>
     <div id="alert-container"></div>
     <script type="module" src="assets/js/app.js"></script>
