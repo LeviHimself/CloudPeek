@@ -38,6 +38,8 @@ const popularCities = [
     , "Dubai", "Riyadh", "Istanbul", "Tel Aviv", "Doha", "Muscat", "Amman", "Beirut"
 ];
 
+// -------------------------Weather GIFs-------------------------
+
 function getWeatherGif(condition) {
     const map = {
         'Thunderstorm': 'thunder.gif',
@@ -57,7 +59,7 @@ function getWeatherGif(condition) {
         'Tornado': 'storm.gif'
     };
 
-    return `assets/${map[condition] || 'cloudy.gif'}`;
+    return `assets/icons/${map[condition] || 'cloudy.gif'}`;
 }
 
 
