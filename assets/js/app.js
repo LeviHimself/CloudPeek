@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
             weatherDisplay.textContent = '';
             return;
         }
-        weatherDisplay.textContent = showAlert('⟳ Loading...');
+        weatherDisplay.textContent = showAlert('Just a moment, fetching weather...');
         try {
             const data = await getWeather(city);
             weatherDisplay.innerHTML = renderResultWeatherCard(data);
@@ -298,11 +298,13 @@ function showTooltip(targetElement, message) {
   });
 }
 
-// Auto-show tooltip when DOM is ready
+// Auto-show tooltip 3 seconds after DOM is ready
 window.addEventListener('DOMContentLoaded', () => {
   const target = document.getElementById('fetch-weather');
   if (target) {
-    showTooltip(target, 'Press this button to fetch the weather or hit the Enter');
+    setTimeout(() => {
+      showTooltip(target, 'Press this button to fetch the weather or hit the Enter');
+    }, 3000); // 3 seconds delay
   }
 });
 
