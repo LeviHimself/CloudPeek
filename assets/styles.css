@@ -379,17 +379,15 @@ button#fetch-weather.loading .lord-icon {
 }
 
 .custom-alert.success {
-  background: linear-gradient(90deg, #d1edfa, #34d399);
+  background-color: #4be1ec75;
   font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
   color: #218d4a;
-  border: 1.5px solid #0ac567;
 }
 
 .custom-alert.error {
-  background: linear-gradient(90deg, #fee2e2, #ef4444);
+  background-color: #4be1ec75;
   font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
   color: #851d1d;
-  border: 1.5px solid #d42d2d;
 }
 
 /*==================================================
