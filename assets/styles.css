@@ -317,7 +317,6 @@ button#fetch-weather.loading .lord-icon {
   max-width: 240px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   word-wrap: break-word;
-  border: 2px solid #4be1ec;
   opacity: 0;
   transform: translateY(8px);
   animation: fadeInUp 0.4s ease-out forwards;
@@ -618,11 +617,9 @@ button#fetch-weather.loading .lord-icon {
   position: absolute;
   top: 0;
   right: 0;
-  background: #dbe9ff;
   border: none;
   border-radius: 50%;
   padding: 8px;
-  box-shadow: 0 2px 8px rgba(37,99,235,0.10);
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
   z-index: 10;
@@ -632,7 +629,6 @@ button#fetch-weather.loading .lord-icon {
 }
 
 .refresh-btn:hover {
-  background: #fefeff;
   transform: rotate(90deg);
 }
 
@@ -641,11 +637,9 @@ button#fetch-weather.loading .lord-icon {
   top: 50%;
   right: 16%;
   transform: translateY(-50%);
-  background: #f9faff;
   border: none;
   border-radius: 50%;
   padding: 6px;
-  box-shadow: 0 2px 8px rgba(37,99,235,0.10);
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
   z-index: 2;
@@ -655,7 +649,6 @@ button#fetch-weather.loading .lord-icon {
 }
 
 #refresh-btn:hover {
-  background: #fefeff;
   transform: translateY(-50%) rotate(90deg);
 }
 
