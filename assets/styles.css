@@ -42,6 +42,7 @@ input[type="text"] {
   outline: none;
   border: 1.5px solid #93c5fd;
   transition: border 0.3s, box-shadow 0.3s;
+  color: #cb5eee;
 }
 
 input[type="text"]:focus,
@@ -56,7 +57,7 @@ input[type="text"]:focus,
   top: 30%;
   transform: translate(-55%);
   font-size: 1rem;
-  color: #6b7280;
+  color: #cb5eee;
   padding: 0 4px;
   background: transparent;
   pointer-events: none;
@@ -69,7 +70,7 @@ input[type="text"]:focus,
   top: 0px;
   left: 0px;
   font-size: 0.82rem;
-  color: #cb5eee;
+  color: #93c5fd;
   background: #fff;
   transform: translate(45%, -55%);
 }
@@ -98,7 +99,7 @@ button#fetch-weather {
   font-size: 0.9rem;
   border: 1.5px solid #4be1ec;
   border-radius: 8px;
-  color: #858585;   
+  color: #4283ce;   
   background: none;
   cursor: pointer;  
   margin-top: 12px;
@@ -495,7 +496,7 @@ button#fetch-weather.loading .lord-icon {
 /*==================================================
 =            Responsive Styles                     =
 ==================================================*/
-@media (max-width:700px) {
+@media (max-width:512px) {
   #app {
     max-width: 98vw;
     padding: 12px 2vw;
@@ -656,7 +657,7 @@ button#fetch-weather.loading .lord-icon {
 .license {
   font-size: 12px;
   font-weight: 700;
-  color: #c5c5c5;
+  color: #93c5fd;
   top: 12px;
   right: 12px;
   opacity: 0;
@@ -664,7 +665,10 @@ button#fetch-weather.loading .lord-icon {
   animation-delay: 1.5s;
 
 }
-
+.cred-link{
+  color: #cb5eee;
+  transition: color 0.2s;
+}
 .d-flex {
   display: flex;
 }
@@ -679,7 +683,7 @@ button#fetch-weather.loading .lord-icon {
    
 }.line {
   margin: 1rem auto;                
-  border: 1.5px solid #4be1ec;
+  border: 1.5px solid #93c5fd;
   border-radius: 8px;
   width: 65%;
 }
