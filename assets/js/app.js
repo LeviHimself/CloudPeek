@@ -379,11 +379,16 @@ async function fetch5DayForecast(city) {
     const daily = data.list.filter(entry => entry.dt_txt.includes("12:00:00")).slice(0, 5);
 
     return daily.map(entry => ({
-        date: new Date(entry.dt_txt).toLocaleDateString(undefined, { weekday: 'short' }),
-        temp: Math.round(entry.main.temp),
-        icon: getWeatherGif(entry.weather[0].main),
-        desc: entry.weather[0].main
-    }));
+    date: new Date(entry.dt_txt).toLocaleDateString(undefined, { weekday: 'short' }),
+    temp: Math.round(entry.main.temp),
+    icon: getWeatherGif(entry.weather[0].main),
+    desc: entry.weather[0].main,
+    wind: Math.round(entry.wind.speed),
+    humidity: entry.main.humidity,
+    temp_min: Math.round(entry.main.temp_min),
+    temp_max: Math.round(entry.main.temp_max)
+}));
+
 }
 function showForecastPopup(forecast, cityName) {
     const existing = document.getElementById('forecast-popup');
@@ -400,16 +405,29 @@ function showForecastPopup(forecast, cityName) {
     const forecastHTML = document.createElement('div');
     forecastHTML.className = 'forecast-container';
 
-    forecast.forEach(day => {
-        forecastHTML.innerHTML += `
-            <div class="forecast-card">
+   forecast.forEach(day => {
+    forecastHTML.innerHTML += `
+        <div class="forecast-card collapsible-card">
+            <div class="card-main">
                 <div>${day.date}</div>
                 <img src="${day.icon}" class="small-weather-icon" alt="${day.desc}">
                 <div>${day.temp}°C</div>
                 <div>${day.desc}</div>
+                <button class="dropdown-toggle" aria-label="More forecast details">
+                    <span class="triangle">&#9660;</span>
+                    <span class="more-info-label">info</span>
+                </button>
             </div>
-        `;
-    });
+            <div class="card-details">
+                <div>Wind: ${day.wind} m/s</div>
+                <div>Humidity: ${day.humidity}%</div>
+                <div>Max: ${day.temp_max}°C </div>
+                <div> Min: ${day.temp_min}°C</div>
+            </div>
+        </div>
+    `;
+});
+
 const closeBtn = document.createElement('span');
 closeBtn.className = 'forecast-close-btn';
 closeBtn.innerHTML = '&times;';
@@ -420,6 +438,8 @@ closeBtn.addEventListener('click', () => container.remove());
 card.appendChild(forecastHTML);
 container.appendChild(card);
 document.body.appendChild(container);
+addMoreInfoLabels();
+
 
 }
 
