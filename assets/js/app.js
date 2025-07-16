@@ -2,7 +2,7 @@
 
 import { getWeather } from './weatherApi.js';
 
-// -------------------------Default & Popular Cities-------------------------
+// -------------------------Default Cities-------------------------
 const defaultCities = ['New York', 'Islamabad','London','Shanghai'];
 const defaultCardsContainer = document.getElementById('default-cards');
 const API_KEY = '4c4f90532fa2eb253fe1e3b4862d4e50'; 
@@ -120,19 +120,32 @@ function createWeatherCard({ name, main, weather, wind, sys }) {
                 <h2>${name}${sys && sys.country ? ', ' + sys.country : ''}</h2>
                 <img src="${getWeatherGif(weather[0].main)}" alt="${weather[0].description}" class="animated-weather-icon">
                 <div class="temp">${Math.round(main.temp)}°C</div>
+                <div class="d-flex">
                 <button class="dropdown-toggle" aria-label="Show details">
                     <span class="triangle">&#9660;</span>
                 </button>
+                <button class="forecast-toggle" data-city="${name}">
+                    <span class="forecast-label"><lord-icon
+    src="https://cdn.lordicon.com/utdckhgo.json"
+    trigger="loop"
+    stroke="bold"
+    state="loop-cycle"
+    style="width:30px;height:30px"
+    class="forecast-icon">
+</lord-icon></span>
+                </button>
+                </div>
             </div>
             <div class="card-details">
                 <div class="condition">${weather[0].main} - ${weather[0].description}</div>
-                <div>Wind: ${wind ? Math.round(wind.speed) : '-'} m/s</div>
+                <div>Wind: ${Math.round(wind?.speed || 0)} m/s</div>
                 <div>Max: ${Math.round(main.temp_max)}°C | Min: ${Math.round(main.temp_min)}°C</div>
                 <div class="humidity">Humidity: ${main.humidity}%</div>
             </div>
         </div>
     `;
 }
+
 
 
 function renderResultWeatherCard(data) {
@@ -144,9 +157,21 @@ function renderResultWeatherCard(data) {
                     <h2>${data.name}, ${data.sys.country}</h2>
                     <div class="temp size">${Math.round(data.main.temp)}°C</div>
                 </div>
+                <div class="d-flex">
                 <button class="dropdown-toggle" aria-label="Show details">
                     <span class="triangle">&#9660;</span>
                 </button>
+                <button class="forecast-toggle" data-city="${data.name}">
+                    <span class="forecast-label"><lord-icon
+    src="https://cdn.lordicon.com/utdckhgo.json"
+    trigger="loop"
+    stroke="bold"
+    state="loop-cycle"
+    style="width:30px;height:30px"
+    class="forecast-icon">
+</lord-icon></span>
+                </button>
+                </div>
             </div>
             <div class="card-details">
                 <div class="condition">${data.weather[0].main} - ${data.weather[0].description}</div>
@@ -157,8 +182,26 @@ function renderResultWeatherCard(data) {
         </div>
     `;
 }
+
 // -------------------------Refresh Btn-------------------------
 document.addEventListener('DOMContentLoaded', () => {
+    
+
+     document.body.addEventListener('click', async (e) => {
+    if (e.target.closest('.forecast-toggle')) {
+        const city = e.target.closest('.forecast-toggle').dataset.city;
+        try {
+            showAlert('Loading forecast...');
+            const forecast = await fetch5DayForecast(city);
+            showForecastPopup(forecast, city);
+        } catch {
+            showAlert('Forecast unavailable.', 'error');
+        }
+    }
+});
+
+
+
     
     const refreshBtn = document.getElementById('refresh-btn');
     if (refreshBtn) {
@@ -302,39 +345,6 @@ document.addEventListener('click', function (e) {
         }
     }
 });
-// -------------------------Tooltip Logic-------------------------
-
-function showTooltip(targetElement, message) {
-  let tooltip = document.querySelector('.dismissible-tooltip');
-  if (tooltip) tooltip.remove();
-
-  tooltip = document.createElement('div');
-  tooltip.className = 'dismissible-tooltip';
-  tooltip.innerHTML = `
-    <button class="tooltip-close" onclick="this.parentElement.remove()">×</button>
-    ${message}
-  `;
-  document.body.appendChild(tooltip);
-
-  function updateTooltipPosition() {
-    const rect = targetElement.getBoundingClientRect();
-    tooltip.style.top = `${rect.bottom + window.scrollY + 8}px`;
-    tooltip.style.left = `${rect.left + window.scrollX}px`;
-  }
-
-  updateTooltipPosition();
-
-  // Keep tooltip correctly positioned on resize or scroll
-  window.addEventListener('scroll', updateTooltipPosition);
-  window.addEventListener('resize', updateTooltipPosition);
-
-  // Clean up listeners when dismissed
-  tooltip.querySelector('.tooltip-close').addEventListener('click', () => {
-    tooltip.remove();
-    window.removeEventListener('scroll', updateTooltipPosition);
-    window.removeEventListener('resize', updateTooltipPosition);
-  });
-}
 
 // Auto-show tooltip 3 seconds after DOM is ready
 window.addEventListener('DOMContentLoaded', () => {
@@ -353,11 +363,95 @@ function addMoreInfoLabels() {
         if (!toggle.querySelector('.more-info-label')) {
             const label = document.createElement('span');
             label.className = 'more-info-label';
-            label.textContent = 'More info';
+            label.textContent = 'info';
             toggle.appendChild(label);
         }
     });
 }
+// -------------------------5-Day Forecast Logic-------------------------
+async function fetch5DayForecast(city) {
+    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('Forecast not available');
+    const data = await res.json();
 
+    // Filter: get one forecast per day at 12:00 PM
+    const daily = data.list.filter(entry => entry.dt_txt.includes("12:00:00")).slice(0, 5);
+
+    return daily.map(entry => ({
+        date: new Date(entry.dt_txt).toLocaleDateString(undefined, { weekday: 'short' }),
+        temp: Math.round(entry.main.temp),
+        icon: getWeatherGif(entry.weather[0].main),
+        desc: entry.weather[0].main
+    }));
+}
+function showForecastPopup(forecast, cityName) {
+    const existing = document.getElementById('forecast-popup');
+    if (existing) existing.remove();
+
+    const container = document.createElement('div');
+    container.id = 'forecast-popup';
+    container.className = 'forecast-popup-overlay';
+
+    const card = document.createElement('div');
+    card.className = 'forecast-popup-card';
+    card.innerHTML = `<h2>5-Day Forecast for ${cityName}</h2>`;
+
+    const forecastHTML = document.createElement('div');
+    forecastHTML.className = 'forecast-container';
+
+    forecast.forEach(day => {
+        forecastHTML.innerHTML += `
+            <div class="forecast-card">
+                <div>${day.date}</div>
+                <img src="${day.icon}" class="small-weather-icon" alt="${day.desc}">
+                <div>${day.temp}°C</div>
+                <div>${day.desc}</div>
+            </div>
+        `;
+    });
+const closeBtn = document.createElement('span');
+closeBtn.className = 'forecast-close-btn';
+closeBtn.innerHTML = '&times;';
+closeBtn.setAttribute('aria-label', 'Close forecast popup');
+closeBtn.addEventListener('click', () => container.remove());
+
+    card.appendChild(closeBtn);
+card.appendChild(forecastHTML);
+container.appendChild(card);
+document.body.appendChild(container);
+
+}
+
+// -------------------------Alert Logic-------------------------
+function showAlert(message, type = "success") {
+    const alertContainer = document.getElementById('alert-container');
+
+    // Lordicon SVGs for success/loading and error
+    const icon = type === "success"
+        ? `<lord-icon
+              src="https://cdn.lordicon.com/ygymzvsj.json"
+              trigger="loop"
+              stroke="bold"
+              state="hover-loading"
+              style="width:64px;height:64px;">
+           </lord-icon>`
+        : `<lord-icon
+              src="https://cdn.lordicon.com/gdfrsvpt.json"
+              trigger="loop"
+              stroke="bold"
+              style="width:64px;height:64px;">
+           </lord-icon>`;
+
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `custom-alert ${type}`;
+    alertDiv.innerHTML = `<span class="alert-icon">${icon}</span><span>${message}</span>`;
+
+    alertContainer.appendChild(alertDiv);
+
+    setTimeout(() => {
+        alertDiv.remove();
+    }, 3000);
+}
 
 
