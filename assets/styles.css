@@ -43,12 +43,12 @@ input[type="text"] {
   border: 1.5px solid #93c5fd;
   transition: border 0.3s, box-shadow 0.3s;
   color: #cb5eee;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
 }
 
 input[type="text"]:focus,
 .form-floating input[type="text"]:focus {
-  border-color: #4be1ec;
-  box-shadow: 0 0 8px #93c5fd55;
+  border-color: #4be1ec;  
 }
 
 .form-floating label {
@@ -220,13 +220,14 @@ button#fetch-weather.loading .lord-icon {
   width: 100%;
   left: 0;
   top: 0;
-  color: #222;
+  color: #cb5eee;
 }
 
 .suggestions-list li {
   padding: 10px 16px;
   cursor: pointer;
   transition: background 0.2s;
+  border-bottom: 1.5px solid #4be1ec;
 }
 
 .suggestions-list li:hover {
@@ -444,6 +445,49 @@ button#fetch-weather.loading .lord-icon {
   margin-top: 4px;
   opacity: 0.8;
 }
+
+/*==================================================
+=            Forecast Styles                        = 
+==================================================*/
+.forecast-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.forecast-card {
+    background: #4be1ec;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    width: 80px;
+    color: #4283ce;
+    font-size: 14px;
+}
+
+.small-weather-icon {
+    width: 40px;
+    height: 40px;
+    margin: 4px 0;
+}
+
+.forecast-toggle {
+    margin-left: 10px;
+    background: transparent;
+    border: none;
+    color: #4283ce;
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.forecast-toggle:hover .forecast-label {
+    color: #99ddff;
+}
+
+
+
 /*==================================================
 =            Keyframes                             =
 ==================================================*/

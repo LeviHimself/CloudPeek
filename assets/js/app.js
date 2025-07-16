@@ -3,7 +3,7 @@
 import { getWeather } from './weatherApi.js';
 
 // -------------------------Default & Popular Cities-------------------------
-const defaultCities = ['Karachi', 'Los angeles','London','Dehli'];
+const defaultCities = ['New York', 'Islamabad','London','Shanghai'];
 const defaultCardsContainer = document.getElementById('default-cards');
 const API_KEY = '4c4f90532fa2eb253fe1e3b4862d4e50'; 
 
@@ -36,6 +36,47 @@ const popularCities = [
     , "Sao Paulo", "Buenos Aires", "Rio de Janeiro", "Lima", "Bogota", "Santiago", "Caracas"
     //Middle East
     , "Dubai", "Riyadh", "Istanbul", "Tel Aviv", "Doha", "Muscat", "Amman", "Beirut"
+    //Southeast Asia
+    , "Bangkok", "Kuala Lumpur", "Singapore", "Jakarta", "Manila", "Hanoi", "Ho Chi Minh City", "Yangon", "Phnom Penh", "Vientiane", "Naypyidaw"
+    //Central Asia
+    , "Tashkent", "Almaty", "Bishkek", "Dushanbe", "Ashgabat"
+    //Russia
+    , "Moscow", "Saint Petersburg", "Novosibirsk", "Yekaterinburg", "Nizhny Novgorod", "Kazan", "Chelyabinsk", "Omsk", "Rostov-on-Don", "Ufa"
+    //Japan
+    , "Tokyo", "Osaka", "Yokohama", "Nagoya", "Sapporo", "Fukuoka", "Kobe", "Kyoto", "Hiroshima", "Sendai"
+    //South Korea
+    , "Seoul", "Busan", "Incheon", "Daegu", "Daejeon", "Gwangju", "Suwon", "Ulsan", "Changwon", "Seongnam"
+    //Turkey
+    , "Istanbul", "Ankara", "Izmir", "Bursa", "Antalya", "Adana", "Gaziantep", "Konya", "Mersin", "Kayseri"
+    //Philippines
+    , "Manila", "Quezon City", "Cebu City", "Davao City", "Zamboanga City", "Taguig", "Pasig", "Cagayan de Oro", "Antipolo", "Iloilo City"
+    //Vietnam
+    , "Hanoi", "Ho Chi Minh City", "Da Nang", "Hai Phong", "Can Tho", "Nha Trang", "Hue", "Vinh", "Bien Hoa", "Nam Dinh"
+    //Malaysia
+    , "Kuala Lumpur", "George Town", "Ipoh", "Johor Bahru", "Kota Kinabalu", "Kuching", "Shah Alam", "Petaling Jaya", "Subang Jaya", "Seremban"
+    //Indonesia
+    , "Jakarta", "Surabaya", "Bandung", "Medan", "Semarang", "Palembang", "Makassar", "Batam", "Malang", "Bandar Lampung", "Depok"
+    //Thailand
+    , "Bangkok", "Nonthaburi", "Nakhon Ratchasima", "Chiang Mai", "Udon Thani", "Hat Yai", "Khon Kaen", "Nakhon Si Thammarat", "Songkhla", "Rayong"
+    //Egypt
+    , "Cairo", "Alexandria", "Giza", "Shubra El-Kheima", "Port Said", "Suez", "Luxor", "Aswan", "Mansoura", "Tanta"
+    //Nigeria
+    , "Lagos", "Kano", "Ibadan", "Port Harcourt", "Benin City", "Kaduna", "Maiduguri", "Zaria", "Aba", "Jos"
+    //South Africa
+    , "Johannesburg", "Cape Town", "Durban", "Pretoria", "Port Elizabeth", "Bloemfontein", "East London", "Pietermaritzburg", "Soweto", "Tshwane"
+    //Brazil
+    , "Sao Paulo", "Rio de Janeiro", "Salvador", "Belo Horizonte", "Brasilia", "Fortaleza", "Curitiba", "Recife", "Porto Alegre", "Manaus"
+    //Argentina
+    , "Buenos Aires", "Cordoba", "Rosario", "La Plata", "Mendoza", "San Miguel de Tucuman", "Mar del Plata", "Salta", "Santa Fe", "Corrientes"
+    //Chile
+    , "Santiago", "Valparaiso", "Concepcion", "La Serena", "Antofagasta", "Temuco", "Rancagua", "Talca", "Puerto Montt", "Arica"
+    //Colombia
+    , "Bogota", "Medellin", "Cali", "Barranquilla", "Cartagena", "Bucaramanga", "Pereira", "Santa Marta", "Manizales", "Cucuta"
+    //Peru
+    , "Lima", "Arequipa", "Trujillo", "Chiclayo", "Piura", "Iquitos", "Cusco", "Chimbote", "Huancayo", "Puno"
+    
+
+
 ];
 
 // -------------------------Weather GIFs-------------------------
@@ -118,12 +159,12 @@ function renderResultWeatherCard(data) {
 }
 // -------------------------Refresh Btn-------------------------
 document.addEventListener('DOMContentLoaded', () => {
-    // ...existing code...
+    
     const refreshBtn = document.getElementById('refresh-btn');
     if (refreshBtn) {
         refreshBtn.addEventListener('click', () => window.location.reload());
     }
-    // ...existing code...
+   
 });
 // -------------------------Default Cards Loader-------------------------
 async function loadDefaultCards() {
@@ -227,7 +268,6 @@ function showAlert(message, type = "success") {
 
     alertContainer.appendChild(alertDiv);
 
-    // Remove alert after animation
     setTimeout(() => {
         alertDiv.remove();
     }, 3000);
@@ -239,14 +279,12 @@ function showAlert(message, type = "success") {
 
     document.getElementById('weather-form').addEventListener('submit', function(e) {
         e.preventDefault();
-        // Call your weather fetch logic here, e.g.:
         document.getElementById('fetch-weather').click();
     });
 });
 
 // -------------------------Event Delegation for Card Dropdowns-------------------------
 document.addEventListener('click', function (e) {
-    // Check if a dropdown-toggle was clicked (works for both default and result cards)
     const toggle = e.target.closest('.dropdown-toggle');
     if (toggle) {
         const card = toggle.closest('.collapsible-card');
