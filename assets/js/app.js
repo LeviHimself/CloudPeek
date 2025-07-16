@@ -132,7 +132,7 @@ function createWeatherCard({ name, main, weather, wind, sys }) {
     state="loop-cycle"
     style="width:30px;height:30px"
     class="forecast-icon">
-</lord-icon></span>
+</lord-icon> Forecast</span>
                 </button>
                 </div>
             </div>
@@ -169,7 +169,7 @@ function renderResultWeatherCard(data) {
     state="loop-cycle"
     style="width:30px;height:30px"
     class="forecast-icon">
-</lord-icon></span>
+</lord-icon> Forecast</span>
                 </button>
                 </div>
             </div>

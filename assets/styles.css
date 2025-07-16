@@ -506,9 +506,17 @@ button#fetch-weather.loading .lord-icon {
 }
 
 .forecast-label {
-  color: #4283ce;
+  color: #cb5eee;
   font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  margin-left: 10%;
 }
+
+
 
 .forecast-card:hover {
   transform: scale(1.05);
@@ -525,7 +533,6 @@ button#fetch-weather.loading .lord-icon {
   top: 12px;
   right: 16px;
   font-size: 28px;
-  font-weight: bold;
   color: #cb5eee;
   background: none;
   border: none;
@@ -540,7 +547,7 @@ button#fetch-weather.loading .lord-icon {
 }
 
 .forecast-icon{
-  margin-left: 300%;
+  margin-left: 0%;
 }
 
 .forecast-toggle {
@@ -676,6 +683,65 @@ button#fetch-weather.loading .lord-icon {
   }
 
 }
+
+/*===========================  
+=    Responsive Forecast Popup Styles =
+===========================*/
+
+@media (max-width: 600px) {
+  .forecast-popup-card {
+    width: 95%;
+    max-height: 95vh;
+    overflow-y: auto;
+    padding: 16px 14px;
+    border-radius: 16px;
+  }
+
+  .forecast-popup-card h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .forecast-container {
+    gap: 0.75rem;
+  }
+
+  .forecast-card {
+    width: 100px;
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+
+  .small-weather-icon {
+    width: 40px;
+    height: 40px;
+    margin: 6px 0;
+  }
+
+  .forecast-close-btn {
+    font-size: 24px;
+    top: 10px;
+    right: 12px;
+  }
+
+  
+}
+
+@media (max-width: 400px) {
+  .forecast-card {
+    width: 90px;
+    padding: 8px 10px;
+  }
+
+  .forecast-popup-card h2 {
+    font-size: 1.2rem;
+  }
+
+  .forecast-close-btn {
+    font-size: 22px;
+  }
+}
+
 
 /*==================================================
 =            Collapsible Card Styles               =
