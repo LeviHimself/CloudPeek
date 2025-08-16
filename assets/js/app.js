@@ -2,6 +2,35 @@
 
 import { getWeather } from './weatherApi.js';
 
+//----------------------Tooltip Logic--------------------
+function showTooltip(target, message) {
+    const tooltip = document.createElement('div');
+    tooltip.className = 'custom-tooltip';
+    tooltip.textContent = message;
+
+    // Position the tooltip relative to the target
+    const rect = target.getBoundingClientRect();
+    tooltip.style.top = `${rect.top + window.scrollY  + 50}px`;
+    tooltip.style.left = `${rect.left + rect.width / 30}px`;
+
+    document.body.appendChild(tooltip);
+
+    setTimeout(() => {
+        tooltip.remove();
+    }, 8000);
+}
+
+// Tooltip trigger
+window.addEventListener('DOMContentLoaded', () => {
+    const target = document.getElementById('fetch-weather');
+    if (target) {
+        setTimeout(() => {
+            showTooltip(target, 'Press this button to fetch the weather or hit Enter');
+        }, 3000);
+    }
+});
+
+
 // -------------------------Default Cities-------------------------
 const defaultCities = ['New York', 'Islamabad','London','Shanghai'];
 const defaultCardsContainer = document.getElementById('default-cards');
@@ -317,6 +346,7 @@ function showAlert(message, type = "success") {
 }
 
 
+
     // -------------------------Initial Load of Default Cards-------------------------
     loadDefaultCards();
 
@@ -345,17 +375,6 @@ document.addEventListener('click', function (e) {
         }
     }
 });
-
-// Auto-show tooltip 3 seconds after DOM is ready
-window.addEventListener('DOMContentLoaded', () => {
-  const target = document.getElementById('fetch-weather');
-  if (target) {
-    setTimeout(() => {
-      showTooltip(target, 'Press this button to fetch the weather or hit the Enter');
-    }, 3000); // 3 seconds delay
-  }
-});
-
 
 // Add "More info" label to all dropdown-toggles (run after DOM updates)
 function addMoreInfoLabels() {
@@ -473,5 +492,6 @@ function showAlert(message, type = "success") {
         alertDiv.remove();
     }, 3000);
 }
+
 
 
